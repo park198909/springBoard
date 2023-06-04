@@ -43,7 +43,7 @@ public class JoinValidator implements Validator, MobileValidator, PasswordValida
         }
 
         // 2. 비밀번호 복잡성 체크(알파벳(대문자,소문자), 숫자, 특수문자)
-        /**
+/**
         if (userPw != null && !userPw.isBlank()
                 && (!alphaCheck(userPw, false)
                 || !numberCheck(userPw)
