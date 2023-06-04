@@ -3,10 +3,15 @@ package com.study.models.member;
 import com.study.entities.Member;
 import com.study.repositories.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -22,6 +27,8 @@ public class MemberInfoService implements UserDetailsService {
             throw new UsernameNotFoundException(username);
         }
 
+        List<GrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(member.getRoles().toString()));
+
         return MemberInfo.builder()
                 .userNo(member.getUserNo())
                 .userNm(member.getUserNm())
@@ -29,6 +36,7 @@ public class MemberInfoService implements UserDetailsService {
                 .userPw(member.getUserPw())
                 .email(member.getEmail())
                 .mobile(member.getMobile())
+                .authorities(authorities)
                 .build();
     }
 }

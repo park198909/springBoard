@@ -1,5 +1,6 @@
 package com.study.models.member;
 
+import com.study.commons.constants.Role;
 import com.study.controllers.members.JoinForm;
 import com.study.entities.Member;
 import com.study.repositories.MemberRepository;
@@ -22,6 +23,8 @@ public class MemberSaveService {
     public void save(JoinForm joinForm) {
 
         Member member = new ModelMapper().map(joinForm, Member.class);
+        member.setRoles(Role.USER);
+
         member.setUserPw(passwordEncoder.encode(joinForm.getUserPw()));
 
         memberRepository.saveAndFlush(member);

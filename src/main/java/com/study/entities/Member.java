@@ -1,5 +1,6 @@
 package com.study.entities;
 
+import com.study.commons.constants.Role;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,4 +31,8 @@ public class Member extends BaseEntity {
 
     @Lob
     private String termsAgree; // 약관 동의 내역
+
+    @Enumerated(EnumType.STRING)
+    @Column(length = 10, nullable = false)
+    private Role roles = Role.USER;
 }
