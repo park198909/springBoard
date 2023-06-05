@@ -1,5 +1,6 @@
 package com.study.models.member;
 
+import com.study.commons.constants.Role;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,6 +16,7 @@ public class MemberInfo implements UserDetails {
     private String userNm;
     private String email;
     private String mobile;
+    private Role roles;
 
     private Collection<GrantedAuthority> authorities;
 
