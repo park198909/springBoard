@@ -2,21 +2,15 @@ package com.study.configs;
 
 import com.study.models.member.LoginFailureHandler;
 import com.study.models.member.LoginSuccessHandler;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityCustomizer;
-import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
-import java.io.IOException;
 
 @Configuration
 public class SecurityConfig {
@@ -36,7 +30,7 @@ public class SecurityConfig {
         // 특정 URL 접속 권한 설정
         http.authorizeHttpRequests()
                 .requestMatchers("/mypage/**").authenticated()  // 회원 전용 페이지로 지정
-                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")  // 관리자 전용 페이지로 지정
+//                .requestMatchers("/admin/**").hasAnyAuthority("ADMIN")  // 관리자 전용 페이지로 지정
                 .anyRequest().permitAll(); // 그외 모든 페이지는 모든 회원이 접근 가능
 
         http.exceptionHandling()
